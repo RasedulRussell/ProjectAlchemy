@@ -17,6 +17,7 @@ public class NewsperCrawler {
         this.crawler = crawler;
     }
 
+    //Crawling the whole website
     public void Crawl() throws IOException {
 
         var urls = crawler.getSublinks(homePageUrl);
