@@ -15,6 +15,7 @@ public class OracleConnectionFactory {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        //Null if no connection available
         return null;
     }
 }
