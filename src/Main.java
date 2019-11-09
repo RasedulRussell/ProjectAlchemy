@@ -1,4 +1,5 @@
 import com.projectalchemy.DatabaseStorage.OracleDatabase;
+import com.projectalchemy.webCrawler.JsoupCrawler;
 import com.projectalchemy.webCrawler.NewsperCrawler;
 import com.projectalchemy.webCrawler.TestCrawler;
 
@@ -24,7 +25,7 @@ public class Main {
         String alJazeera = "https://www.aljazeera.com";
 
         NewsperCrawler newsperCrawler =
-                new NewsperCrawler(prothomAlo,new OracleDatabase(connection),new TestCrawler());
+                new NewsperCrawler(prothomAlo,new OracleDatabase(connection),new JsoupCrawler());
         newsperCrawler.Crawl();
 
         var statement = connection.prepareStatement("select  * from tabletest");
