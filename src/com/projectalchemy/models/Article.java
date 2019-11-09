@@ -8,6 +8,7 @@ public class Article {
 
 
     private String id;
+    //Comment
     private String title;
     private String details;
     private Date timePublished;
