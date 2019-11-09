@@ -8,6 +8,7 @@ public class Article {
 
 
     private String id;
+    //comment jsdfhas
     private String title;
     private String details;
     private Date timePublished;
