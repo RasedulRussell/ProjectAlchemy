@@ -47,6 +47,7 @@ public class Article {
         this.details = details;
     }
 
+    //TIme publish added
     public void setTimePublished(Date timePublished) {
         this.timePublished = timePublished;
     }
