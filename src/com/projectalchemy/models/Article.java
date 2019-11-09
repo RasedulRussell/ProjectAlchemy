@@ -51,6 +51,7 @@ public class Article {
         this.timePublished = timePublished;
     }
 
+    ///It is used for store update time
     public void setTimeUpdated(Date timeUpdated) {
         this.timeUpdated = timeUpdated;
     }
