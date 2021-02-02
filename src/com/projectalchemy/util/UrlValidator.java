@@ -8,8 +8,7 @@ public class UrlValidator {
     {
         /* Try creating a valid URL */
         try {
-            if(url ==null || url.isEmpty()) return false;
-            
+            if(url ==null || url.isEmpty() || url.length() < 40) return false;
             new URL(url).toURI();
             return true;
         }

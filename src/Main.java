@@ -15,9 +15,6 @@ public class Main {
         OracleConnectionFactory dbConnection = new OracleConnectionFactory();
         var connection = dbConnection.getConnectionOracle();
 
-        /*Table myTable = new Table();
-        myTable.CreatTable();*/
-
         String samakal = "https://samakal.com";
         String prothomAlo = "https://www.prothomalo.com";
         String dailyinqilab = "https://www.dailyinqilab.com";
@@ -25,17 +22,21 @@ public class Main {
         String alJazeera = "https://www.aljazeera.com";
 
         NewsperCrawler newsperCrawler =
-                new NewsperCrawler(prothomAlo,new OracleDatabase(connection),new JsoupCrawler());
+                new NewsperCrawler(samakal,new OracleDatabase(connection),new JsoupCrawler());
         newsperCrawler.Crawl();
 
-        var statement = connection.prepareStatement("select  * from tabletest");
+         /*newsperCrawler =
+                new NewsperCrawler(dailyStar,new OracleDatabase(connection),new JsoupCrawler());
+        newsperCrawler.Crawl();*/
+
+        var statement = connection.prepareStatement("select  * from Article");
         ResultSet result = statement.executeQuery();
 
         while (result.next()){
-            var blob = result.getBlob(2);
-            var details = new String(blob.getBytes(1, (int) blob.length()));
+            var blob = result.getBlob(3);
+            var details = new String(blob.getBytes(3, (int) blob.length()));
             System.out.println(details);
-            break;
+            System.out.println();
         }
         connection.close();
     }

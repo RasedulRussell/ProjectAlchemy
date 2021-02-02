@@ -10,9 +10,9 @@ public class Table {
         Connection connection = OracleConnectionFactory.getConnectionOracle() ;
         try{
             Statement statement = connection.createStatement();
-            System.out.println("my Table "+ tableCreate);
+            ////System.out.println("my Table "+ tableCreate);
             statement.execute(tableCreate);
-            System.out.println("Table created successfully");
+            ///System.out.println("Table created successfully");
             statement.close();
             connection.close();
         }catch (Exception ex){

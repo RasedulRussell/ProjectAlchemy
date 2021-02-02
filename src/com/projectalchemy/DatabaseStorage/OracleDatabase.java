@@ -23,9 +23,10 @@ public class OracleDatabase implements Database {
             insertStatement.setString(2,article.getTitle());
 
             Blob blob = connection.createBlob();
-            blob.setBytes(3, article.getDetails().getBytes());
+            blob.setBytes(3, article.getRawDetails().getBytes());
             insertStatement.setBlob(3, blob);
 
+            ///System.out.println(article.getDetails().length()); i will check later
             insertStatement.setString(4, article.getDetails());
             insertStatement.setString(5, article.getUrl());
             var isExecuted = insertStatement.execute();

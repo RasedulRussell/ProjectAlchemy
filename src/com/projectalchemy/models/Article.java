@@ -11,10 +11,19 @@ public class Article {
     //Comment
     private String title;
     private String details;
+    private String rawDetails;
     private Date timePublished;
     private Date timeUpdated;
     private String url;
     private String category;
+
+    public String getRawDetails() {
+        return rawDetails;
+    }
+
+    public void setRawDetails(String rawDetails) {
+        this.rawDetails = rawDetails;
+    }
 
     public String getDetails() {
         return details;

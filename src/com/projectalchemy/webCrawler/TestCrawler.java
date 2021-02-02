@@ -15,7 +15,6 @@ public class TestCrawler implements WebCrawler {
         article.setUrl(url);
         article.setTitle("Test title");
         article.setDetails("details");
-
         return article;
     }
 

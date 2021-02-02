@@ -19,16 +19,16 @@ public class JsoupCrawler implements WebCrawler {
 
         Document document = Jsoup.connect(url).get();
         var title = document.title();
-        System.out.println(document.title());
+        ///System.out.println(document.title());
         Elements articleTag = document.select("article");
         String details = articleTag.text();
-
         var article = new Article();
-
         article.setTitle(title);
-        article.setDetails(details.substring(0, Math.min(100, details.length())));
+        article.setRawDetails(details);
+        var shortDetails = details.substring(0, Math.min(999, details.length()));
+        article.setDetails(shortDetails);
         article.setUrl(url);
-
+        System.out.println("return");
         return article;
     }
 
@@ -36,17 +36,12 @@ public class JsoupCrawler implements WebCrawler {
     public List<String> getSublinks(String newspaperHomeUrl) throws IOException {
 
         Document doc = Jsoup.connect(newspaperHomeUrl).get();
-        Elements links = doc.select("[href]");
+        Elements links = doc.select("a[href]");
         var urls = new ArrayList<String>();
-
         for (Element link : links) {
-            String st = link.absUrl("href");
-            boolean isContain = st.contains("article");
-            if (isContain) {
-                urls.add(st);
-            }
+            String url = link.absUrl("href");
+            urls.add(url);
         }
-
         return urls;
     }
 }
