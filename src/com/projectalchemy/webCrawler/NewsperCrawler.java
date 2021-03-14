@@ -4,8 +4,6 @@ import com.projectalchemy.DatabaseStorage.Database;
 import com.projectalchemy.util.UrlValidator;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 
 public class NewsperCrawler {
 
@@ -22,21 +20,15 @@ public class NewsperCrawler {
     //Crawling the whole website
     public void Crawl() throws IOException {
         var urls = crawler.getSublinks(homePageUrl);
-
-        System.out.println("Total link count " + urls.size());
-        int count = 0;
-        System.out.println(urls.get(35));
         for (var url : urls) {
-            ///System.out.println(++count + ":Url to crawl " + url);
+            System.out.println( "this is url " + url);
             if (UrlValidator.isValid(url)) {
                 var article = crawler.getData(url);
-                if (article.getDetails().length() > 0)
+                System.out.println("details " + article.getDetails());
+                if (article != null && article.getDetails().length() > 0) {
+                    System.out.println(article.getTitle());
                     database.StoreData(article);
-            }
-            ///System.out.println( "is valid "+ UrlValidator.isValid(url)+ " " + ++count +" execute");
-            if( count == 34 ){
-                System.out.println(url);
-                ///break;
+                }
             }
         }
     }

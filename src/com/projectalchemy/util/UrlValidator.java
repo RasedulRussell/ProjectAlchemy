@@ -4,17 +4,12 @@ import java.net.URL;
 
 public class UrlValidator {
 
-    public static boolean isValid(String url)
-    {
+    public static boolean isValid(String url) {
         /* Try creating a valid URL */
-        try {
-            if(url ==null || url.isEmpty() || url.length() < 40) return false;
-            new URL(url).toURI();
+
+        if(url.contains("article")) {
             return true;
-        }
-        // If there was an Exception
-        // while creating URL object
-        catch (Exception e) {
+        }else {
             return false;
         }
     }

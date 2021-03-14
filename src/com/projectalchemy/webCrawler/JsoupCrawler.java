@@ -16,25 +16,29 @@ public class JsoupCrawler implements WebCrawler {
 
     @Override
     public Article getData(String url) throws IOException {
-
-        Document document = Jsoup.connect(url).get();
-        var title = document.title();
-        ///System.out.println(document.title());
-        Elements articleTag = document.select("article");
+        Document document = null;
+        try {
+            document = Jsoup.connect(url).get();
+        } catch (Exception ex) {
+            return null;
+        }
+        var title = document.getElementsByTag("title").toString();
+        Elements articleTag = document.select("p");
         String details = articleTag.text();
         var article = new Article();
+        var shortDetails = details.substring(0, Math.min(990, details.length()));
+
         article.setTitle(title);
         article.setRawDetails(details);
-        var shortDetails = details.substring(0, Math.min(999, details.length()));
         article.setDetails(shortDetails);
         article.setUrl(url);
-        System.out.println("return");
+
         return article;
+
     }
 
     @Override
     public List<String> getSublinks(String newspaperHomeUrl) throws IOException {
-
         Document doc = Jsoup.connect(newspaperHomeUrl).get();
         Elements links = doc.select("a[href]");
         var urls = new ArrayList<String>();

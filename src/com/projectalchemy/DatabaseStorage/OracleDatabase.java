@@ -17,10 +17,10 @@ public class OracleDatabase implements Database {
     public void StoreData(Article article) {
         try {
 
-            PreparedStatement insertStatement = connection.prepareStatement("insert into NEWSPAPER.Article (id, title, rawdetails, details, url) values (?,?,?,?,?)");
+            PreparedStatement insertStatement = connection.prepareStatement("insert into Article (id, title, rawdetails, details, url) values (?,?,?,?,?)");
 
-            insertStatement.setString(1,article.getId());
-            insertStatement.setString(2,article.getTitle());
+            insertStatement.setString(1, article.getId());
+            insertStatement.setString(2, article.getTitle());
 
             Blob blob = connection.createBlob();
             blob.setBytes(3, article.getRawDetails().getBytes());
@@ -31,13 +31,12 @@ public class OracleDatabase implements Database {
             insertStatement.setString(5, article.getUrl());
             var isExecuted = insertStatement.execute();
 
-            if(!isExecuted){
+            if (!isExecuted) {
 
             }
             insertStatement.close();
-
         } catch (Exception exception) {
-            if(exception.getMessage().contains("java.sql.SQLIntegrityConstraintViolationException")){
+            if (exception.getMessage().contains("java.sql.SQLIntegrityConstraintViolationException")) {
                 //fetch news
                 //check updated
                 //

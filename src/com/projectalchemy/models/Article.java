@@ -8,7 +8,6 @@ public class Article {
 
 
     private String id;
-    //Comment
     private String title;
     private String details;
     private String rawDetails;
@@ -26,6 +25,7 @@ public class Article {
     }
 
     public String getDetails() {
+        ///System.out.println(details);
         return details;
     }
 
@@ -78,7 +78,7 @@ public class Article {
     }
 
     public String getId() throws Exception {
-        if(this.url == null) throw new Exception("Url not set yet;");
+        if (this.url == null) throw new Exception("Url not set yet;");
         return id;
     }
 

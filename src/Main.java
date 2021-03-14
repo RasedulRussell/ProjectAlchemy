@@ -1,12 +1,13 @@
 import com.projectalchemy.DatabaseStorage.OracleDatabase;
+import com.projectalchemy.DatabaseStorage.TestDatabase;
 import com.projectalchemy.webCrawler.JsoupCrawler;
 import com.projectalchemy.webCrawler.NewsperCrawler;
 import com.projectalchemy.webCrawler.TestCrawler;
+import newspapers.ProthomAlo;
 
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 
 
 public class Main {
@@ -22,17 +23,13 @@ public class Main {
         String alJazeera = "https://www.aljazeera.com";
 
         NewsperCrawler newsperCrawler =
-                new NewsperCrawler(samakal,new OracleDatabase(connection),new JsoupCrawler());
+                new NewsperCrawler(prothomAlo, new TestDatabase(connection), new ProthomAlo());
         newsperCrawler.Crawl();
-
-         /*newsperCrawler =
-                new NewsperCrawler(dailyStar,new OracleDatabase(connection),new JsoupCrawler());
-        newsperCrawler.Crawl();*/
 
         var statement = connection.prepareStatement("select  * from Article");
         ResultSet result = statement.executeQuery();
 
-        while (result.next()){
+        while (result.next()) {
             var blob = result.getBlob(3);
             var details = new String(blob.getBytes(3, (int) blob.length()));
             System.out.println(details);
