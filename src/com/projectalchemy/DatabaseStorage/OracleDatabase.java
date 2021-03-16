@@ -17,7 +17,7 @@ public class OracleDatabase implements Database {
     public void StoreData(Article article) {
         try {
 
-            PreparedStatement insertStatement = connection.prepareStatement("insert into Article (id, title, rawdetails, details, url) values (?,?,?,?,?)");
+            PreparedStatement insertStatement = connection.prepareStatement("insert into Article (id, title, rawdetails, details, category, url) values (?,?,?,?,?,?)");
 
             insertStatement.setString(1, article.getId());
             insertStatement.setString(2, article.getTitle());
@@ -28,7 +28,8 @@ public class OracleDatabase implements Database {
 
             ///System.out.println(article.getDetails().length()); i will check later
             insertStatement.setString(4, article.getDetails());
-            insertStatement.setString(5, article.getUrl());
+            insertStatement.setString(5, article.getCategory());
+            insertStatement.setString(6, article.getUrl());
             var isExecuted = insertStatement.execute();
 
             if (!isExecuted) {

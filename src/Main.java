@@ -4,6 +4,7 @@ import com.projectalchemy.webCrawler.JsoupCrawler;
 import com.projectalchemy.webCrawler.NewsperCrawler;
 import com.projectalchemy.webCrawler.TestCrawler;
 import newspapers.ProthomAlo;
+import newspapers.Samakal;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -23,7 +24,7 @@ public class Main {
         String alJazeera = "https://www.aljazeera.com";
 
         NewsperCrawler newsperCrawler =
-                new NewsperCrawler(prothomAlo, new TestDatabase(connection), new ProthomAlo());
+                new NewsperCrawler(samakal, new OracleDatabase(connection), new Samakal());
         newsperCrawler.Crawl();
 
         var statement = connection.prepareStatement("select  * from Article");

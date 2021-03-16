@@ -21,10 +21,8 @@ public class NewsperCrawler {
     public void Crawl() throws IOException {
         var urls = crawler.getSublinks(homePageUrl);
         for (var url : urls) {
-            System.out.println( "this is url " + url);
             if (UrlValidator.isValid(url)) {
                 var article = crawler.getData(url);
-                System.out.println("details " + article.getDetails());
                 if (article != null && article.getDetails().length() > 0) {
                     System.out.println(article.getTitle());
                     database.StoreData(article);
