@@ -4,6 +4,7 @@ import com.projectalchemy.webCrawler.JsoupCrawler;
 import com.projectalchemy.webCrawler.NewsperCrawler;
 import com.projectalchemy.webCrawler.TestCrawler;
 import newspapers.Bdnews24;
+import newspapers.KalerKantho;
 import newspapers.ProthomAlo;
 import newspapers.Samakal;
 
@@ -24,20 +25,10 @@ public class Main {
         String dailyStar = "https://www.thedailystar.net";
         String alJazeera = "https://www.aljazeera.com";
         String bdnews24 = "https://bangla.bdnews24.com/news";
+        String kalerkantho = "https://www.kalerkantho.com";
 
         NewsperCrawler newsperCrawler =
                 new NewsperCrawler(bdnews24, new OracleDatabase(connection), new Bdnews24());
         newsperCrawler.Crawl();
-
-        var statement = connection.prepareStatement("select  * from Article");
-        ResultSet result = statement.executeQuery();
-
-        while (result.next()) {
-            var blob = result.getBlob(3);
-            var details = new String(blob.getBytes(3, (int) blob.length()));
-            System.out.println(details);
-            System.out.println();
-        }
-        connection.close();
     }
 }
