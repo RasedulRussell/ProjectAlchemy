@@ -6,7 +6,7 @@ public class CategoryCheck {
     private static ArrayList<String> categoryList = new ArrayList<String>() {
         {
             add("bangladesh");
-            add("sports");
+            add("sport");
             add("politics");
             add("economics");
             add("international");

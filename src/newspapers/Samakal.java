@@ -2,6 +2,7 @@ package newspapers;
 
 import com.projectalchemy.models.Article;
 import com.projectalchemy.util.CategoryCheck;
+import com.projectalchemy.util.ParseToMediaUrl;
 import com.projectalchemy.webCrawler.WebCrawler;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -24,8 +25,14 @@ public class Samakal implements WebCrawler {
         String title = document.select("title").text();
         String category = CategoryCheck.categoryCheck(url);
 
-        Elements elements = document.select("p");
+        /// media link find
+        String mediaUrl = null;
+        Elements mediaElements = document.getElementsByClass("image-container image rel-soci");
+        for(var ok : mediaElements) {
+            mediaUrl = ParseToMediaUrl.parseToMediaURL(ok.select("img").toString());
+        }
 
+        Elements elements = document.select("p");
         /// remove category tag
 
         for(int i = 0; i <= 19; i++) {
@@ -52,6 +59,7 @@ public class Samakal implements WebCrawler {
         article.setDetails(shortDetails);
         article.setUrl(url);
         article.setCategory(category);
+        article.setMediaUrl(mediaUrl);
 
         return article;
     }

@@ -15,6 +15,15 @@ public class Article {
     private Date timeUpdated;
     private String url;
     private String category;
+    private String mediaUrl;
+
+    public void setMediaUrl(String mediaUrl) {
+        this.mediaUrl = mediaUrl;
+    }
+
+    public String getMediaUrl() {
+        return mediaUrl;
+    }
 
     public String getRawDetails() {
         return rawDetails;
