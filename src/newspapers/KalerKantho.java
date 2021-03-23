@@ -48,6 +48,7 @@ public class KalerKantho implements WebCrawler {
         String shortDetails = rawDetails.substring(0, Math.min(700, rawDetails.length()));
 
         Article article = new Article();
+        article.setCategory(category);
         article.setTitle(title);
         article.setDetails(shortDetails);
         article.setRawDetails(rawDetails);

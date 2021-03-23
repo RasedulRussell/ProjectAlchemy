@@ -1,27 +1,31 @@
 package com.projectalchemy.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class CategoryCheck {
-    private static ArrayList<String> categoryList = new ArrayList<String>() {
+    private static HashMap<String, ArrayList<String>> categoryList = new HashMap<>() {
         {
-            add("bangladesh");
-            add("sport");
-            add("politics");
-            add("economics");
-            add("international");
-            add("entertainment");
-            add("lifestyle");
-            add("education");
-            add("technology");
-            add("sahitto-o-sangskriti");
+            put("sports", new ArrayList<String>(Arrays.asList("sport", "cricket", "football","sports")));
+            put("bangladesh", new ArrayList<String>(Arrays.asList("samagrabangladesh", "bangladesh", "country-new", "national", "whole-country")));
+            put("international", new ArrayList<String>(Arrays.asList("world", "international")));
+            put("entertainment", new ArrayList<>(Arrays.asList("entertainment", "movie", "music")));
+            put("technology", new ArrayList<>(Arrays.asList("technology", "info-tech", "tech-everyday")));
+            put("economics", new ArrayList<String>(Arrays.asList("economics", "business", "industry-business", "industry-trade")));
+            put("lifestyle", new ArrayList<String>(Arrays.asList("lifestyle")));
+            put("education", new ArrayList<String>(Arrays.asList("education")));
         }
     };
 
     public static String categoryCheck(String url) {
-        for(String category : categoryList) {
-            if(url.contains(category)) {
-                return category;
+        for(var category : categoryList.entrySet()) {
+            String mainCategory = category.getKey();
+            ArrayList<String> list = category.getValue();
+            for(var str : list) {
+                if(url.contains(str)) {
+                    return mainCategory;
+                }
             }
         }
         return "other";
