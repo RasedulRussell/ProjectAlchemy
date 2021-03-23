@@ -8,7 +8,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProthomAlo implements WebCrawler {
@@ -21,10 +20,10 @@ public class ProthomAlo implements WebCrawler {
     @Override
     public List<String> getSublinks(String newsPaperHomeUrl) throws IOException {
         Document document = Jsoup.connect(newsPaperHomeUrl).get();
-        System.out.println(document.title());
-
-        System.out.println(document);
-
+        Elements elements = document.select("a[data-tracking-category]");
+        for(var el : elements) {
+            System.out.println(el);
+        }
         System.exit(0);
         return null;
     }

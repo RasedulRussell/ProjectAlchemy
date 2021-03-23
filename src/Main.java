@@ -28,7 +28,7 @@ public class Main {
         String kalerkantho = "https://www.kalerkantho.com";
 
         NewsperCrawler newsperCrawler =
-                new NewsperCrawler(bdnews24, new OracleDatabase(connection), new Bdnews24());
+                new NewsperCrawler(kalerkantho, new OracleDatabase(connection), new KalerKantho());
         newsperCrawler.Crawl();
     }
 }
