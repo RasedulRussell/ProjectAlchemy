@@ -16,8 +16,8 @@ public class OracleDatabase implements Database {
 
     public void StoreData(Article article) {
         try {
-
-            PreparedStatement insertStatement = connection.prepareStatement("insert into Article (id, title, rawdetails, details, category, url, mediaurl) values (?,?,?,?,?,?,?)");
+            ///2021-03-26 00:46:55.25
+            PreparedStatement insertStatement = connection.prepareStatement("insert into Article (id, title, rawdetails, details, category, url, mediaurl, CREATEDTIME) values (?,?,?,?,?,?,?,?)");
 
             insertStatement.setString(1, article.getId());
             insertStatement.setString(2, article.getTitle());
@@ -31,6 +31,8 @@ public class OracleDatabase implements Database {
             insertStatement.setString(5, article.getCategory());
             insertStatement.setString(6, article.getUrl());
             insertStatement.setString(7, article.getMediaUrl());
+            insertStatement.setTimestamp(8, article.getTimePublished());
+
             var isExecuted = insertStatement.execute();
 
             if (!isExecuted) {

@@ -11,6 +11,8 @@ import org.jsoup.select.Elements;
 
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +60,9 @@ public class Bdnews24 implements WebCrawler {
 
         Article article = new Article();
 
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Timestamp date = new Timestamp(System.currentTimeMillis());
+        article.setTimePublished(date);
         article.setTitle(title);
         article.setDetails(shortDetails);
         article.setRawDetails(details);

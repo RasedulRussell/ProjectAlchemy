@@ -9,10 +9,10 @@ public class CategoryCheck {
         {
             put("sports", new ArrayList<String>(Arrays.asList("sport", "cricket", "football","sports")));
             put("bangladesh", new ArrayList<String>(Arrays.asList("samagrabangladesh", "bangladesh", "country-new", "national", "whole-country")));
-            put("international", new ArrayList<String>(Arrays.asList("world", "international")));
+            put("world", new ArrayList<String>(Arrays.asList("world", "international")));
             put("entertainment", new ArrayList<>(Arrays.asList("entertainment", "movie", "music")));
             put("technology", new ArrayList<>(Arrays.asList("technology", "info-tech", "tech-everyday")));
-            put("economics", new ArrayList<String>(Arrays.asList("economics", "business", "industry-business", "industry-trade")));
+            put("business", new ArrayList<String>(Arrays.asList("economics", "business", "industry-business", "industry-trade")));
             put("lifestyle", new ArrayList<String>(Arrays.asList("lifestyle")));
             put("education", new ArrayList<String>(Arrays.asList("education")));
         }
@@ -28,6 +28,6 @@ public class CategoryCheck {
                 }
             }
         }
-        return "other";
+        return "others";
     }
 }

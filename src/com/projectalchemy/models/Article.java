@@ -3,6 +3,7 @@ package com.projectalchemy.models;
 import com.projectalchemy.util.MD5Hash;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Article {
 
@@ -11,7 +12,7 @@ public class Article {
     private String title;
     private String details;
     private String rawDetails;
-    private Date timePublished;
+    private Timestamp timePublished;
     private Date timeUpdated;
     private String url;
     private String category;
@@ -38,7 +39,7 @@ public class Article {
         return details;
     }
 
-    public Date getTimePublished() {
+    public Timestamp getTimePublished() {
         return timePublished;
     }
 
@@ -67,7 +68,7 @@ public class Article {
     }
 
     //TIme publish added
-    public void setTimePublished(Date timePublished) {
+    public void setTimePublished(Timestamp timePublished) {
         this.timePublished = timePublished;
     }
 

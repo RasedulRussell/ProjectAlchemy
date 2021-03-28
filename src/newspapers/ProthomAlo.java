@@ -20,10 +20,7 @@ public class ProthomAlo implements WebCrawler {
     @Override
     public List<String> getSublinks(String newsPaperHomeUrl) throws IOException {
         Document document = Jsoup.connect(newsPaperHomeUrl).get();
-        Elements elements = document.select("a[data-tracking-category]");
-        for(var el : elements) {
-            System.out.println(el);
-        }
+
         System.exit(0);
         return null;
     }

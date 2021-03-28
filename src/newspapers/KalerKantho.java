@@ -10,6 +10,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +49,9 @@ public class KalerKantho implements WebCrawler {
         String shortDetails = rawDetails.substring(0, Math.min(700, rawDetails.length()));
 
         Article article = new Article();
+
+        Timestamp date = new Timestamp(System.currentTimeMillis());
+        article.setTimePublished(date);
         article.setCategory(category);
         article.setTitle(title);
         article.setDetails(shortDetails);

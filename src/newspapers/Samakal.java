@@ -10,7 +10,11 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Samakal implements WebCrawler {
@@ -53,6 +57,9 @@ public class Samakal implements WebCrawler {
         String shortDetails = details.substring(0, Math.min(900, details.length()));
 
         Article article = new Article();
+
+        Timestamp date = new Timestamp(System.currentTimeMillis());
+        article.setTimePublished(date);
 
         article.setTitle(title);
         article.setRawDetails(details);
