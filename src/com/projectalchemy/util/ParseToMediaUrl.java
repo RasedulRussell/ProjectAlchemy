@@ -1,16 +1,19 @@
 package com.projectalchemy.util;
 
 public class ParseToMediaUrl {
-    public static String parseToMediaURL(String str) {
-        String absUrlGenerate = "";
-        int i = 0;
-        while((i < str.length()) && str.charAt(i) != '"') {
+    public static String parseToMediaURL(String url) {
+        if(url.length() == 0) {
+            return null;
+        }
+        int i;
+        for(i = 0; i < url.length() - 5; i++) {
+            String hello = url.substring(i, i + 5 - 1);
+            if(hello.equals("http")) break;
+        }
+        int j = i;
+        while(i < url.length()-1 && url.charAt(i+1) != '"') {
             i++;
         }
-        i++;
-        while((i < str.length()) && str.charAt(i) != '"') {
-            absUrlGenerate = absUrlGenerate + str.charAt(i++);
-        }
-        return absUrlGenerate;
+        return url.substring(j, i);
     }
 }

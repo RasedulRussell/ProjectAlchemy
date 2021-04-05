@@ -4,7 +4,6 @@ import com.projectalchemy.models.Article;
 import com.projectalchemy.util.CategoryCheck;
 import com.projectalchemy.util.ParseToMediaUrl;
 import com.projectalchemy.webCrawler.WebCrawler;
-import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;

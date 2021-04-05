@@ -1,15 +1,8 @@
 import com.projectalchemy.DatabaseStorage.OracleDatabase;
-import com.projectalchemy.DatabaseStorage.TestDatabase;
-import com.projectalchemy.webCrawler.JsoupCrawler;
 import com.projectalchemy.webCrawler.NewsperCrawler;
-import com.projectalchemy.webCrawler.TestCrawler;
-import newspapers.Bdnews24;
-import newspapers.KalerKantho;
-import newspapers.ProthomAlo;
-import newspapers.Samakal;
+import newspapers.*;
 
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -28,7 +21,7 @@ public class Main {
         String kalerkantho = "https://www.kalerkantho.com";
 
         NewsperCrawler newsperCrawler =
-                new NewsperCrawler(samakal, new OracleDatabase(connection), new Samakal());
+                new NewsperCrawler(prothomAlo, new OracleDatabase(connection), new ProthomAlo());
         newsperCrawler.Crawl();
     }
 }

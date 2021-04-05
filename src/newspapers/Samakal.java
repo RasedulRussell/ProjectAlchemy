@@ -6,15 +6,11 @@ import com.projectalchemy.util.ParseToMediaUrl;
 import com.projectalchemy.webCrawler.WebCrawler;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Samakal implements WebCrawler {
@@ -47,10 +43,10 @@ public class Samakal implements WebCrawler {
             }
             elements.remove(0);
         }
-        if(elements.get(0).text() == "্রিন্ট সংস্করণ") {
+        if(elements.get(0).text().equals("্রিন্ট সংস্করণ")) {
             elements.remove(0);
         }
-        if(elements.get(0).text() == "ছবি: সংগৃহীত") {
+        if(elements.get(0).text().equals("ছবি: সংগৃহীত")) {
             elements.remove(0);
         }
         String details = elements.text();

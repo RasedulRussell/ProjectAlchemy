@@ -1,15 +1,13 @@
 package com.projectalchemy.webCrawler;
 
 import com.projectalchemy.DatabaseStorage.Database;
-import com.projectalchemy.util.UrlValidator;
-
 import java.io.IOException;
 
 public class NewsperCrawler {
 
-    private String homePageUrl;
-    private Database database;
-    private WebCrawler crawler;
+    private final String homePageUrl;
+    private final Database database;
+    private final WebCrawler crawler;
 
     public NewsperCrawler(String homePageUrl, Database database, WebCrawler crawler) {
         this.homePageUrl = homePageUrl;

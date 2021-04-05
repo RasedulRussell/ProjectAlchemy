@@ -83,7 +83,7 @@ public class Article {
         try {
             this.id = MD5Hash.getHash(url);
         } catch (Exception exception) {
-
+            exception.printStackTrace();
         }
     }
 
