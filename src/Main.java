@@ -19,9 +19,11 @@ public class Main {
         String alJazeera = "https://www.aljazeera.com";
         String bdnews24 = "https://bangla.bdnews24.com/news";
         String kalerkantho = "https://www.kalerkantho.com";
+        String ittefaq = "https://www.ittefaq.com.bd/";
+        String nayadiganta = "https://www.dailynayadiganta.com/";
 
         NewsperCrawler newsperCrawler =
-                new NewsperCrawler(prothomAlo, new OracleDatabase(connection), new ProthomAlo());
+                new NewsperCrawler(nayadiganta, new OracleDatabase(connection), new Nayadiganta());
         newsperCrawler.Crawl();
     }
 }

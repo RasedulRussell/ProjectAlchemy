@@ -13,17 +13,16 @@ import java.util.List;
 
 public class JsoupCrawler implements WebCrawler {
 
-
     @Override
     public Article getData(String url) throws IOException {
-        Document document = null;
+        org.jsoup.nodes.Document document = null;
         try {
             document = Jsoup.connect(url).get();
         } catch (Exception ex) {
             return null;
         }
         var title = document.getElementsByTag("title").toString();
-        Elements articleTag = document.select("p");
+        org.jsoup.select.Elements articleTag =  document.select("p");
         String details = articleTag.text();
         var article = new Article();
         var shortDetails = details.substring(0, Math.min(990, details.length()));
@@ -40,7 +39,7 @@ public class JsoupCrawler implements WebCrawler {
     @Override
     public List<String> getSublinks(String newspaperHomeUrl) throws IOException {
         Document doc = Jsoup.connect(newspaperHomeUrl).get();
-        Elements links = doc.select("a[href]");
+        Elements links =  doc.select("a[href]");
         var urls = new ArrayList<String>();
         for (Element link : links) {
             String url = link.absUrl("href");

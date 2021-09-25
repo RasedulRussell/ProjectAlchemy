@@ -2,8 +2,6 @@ package newspapers;
 
 import com.projectalchemy.models.Article;
 import com.projectalchemy.util.CategoryCheck;
-import com.projectalchemy.util.ParseToMediaUrl;
-import com.projectalchemy.util.UrlValidator;
 import com.projectalchemy.webCrawler.WebCrawler;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -12,11 +10,11 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
-public class KalerKantho implements WebCrawler {
+public class Ittefaq implements WebCrawler {
 
-    private static String urlPattern = "^https://www.kalerkantho.com[\\/][a-z]+[\\/][a-z\\-]+[\\/][0-9]+[\\/][0-9]+[\\/][0-9]+[\\/][0-9]+$";
     @Override
     public Article getData(String url) throws IOException {
         org.jsoup.nodes.Document document = null;
@@ -27,17 +25,11 @@ public class KalerKantho implements WebCrawler {
             return null;
         }
 
-        String title = "";
-        String tempTitle = document.select("title").text();
-        for(int i = 0;  i < tempTitle.length(); i++) {
-            if(tempTitle.charAt(i) == '|')break;
-            title = title + tempTitle.charAt(i);
-        }
+        String title = document.select("title").text();
+
         String category = CategoryCheck.categoryCheck(url);
 
-        String medialUrl = document.getElementsByClass("img").toString();
-        medialUrl = ParseToMediaUrl.parseToMediaURL(medialUrl.substring(16, medialUrl.length()));
-
+        String medialUrl = document.getElementsByClass("img").attr("src");
 
         Elements elements = document.select("p");
         elements.remove(0); //// removing extra paragraph
@@ -58,21 +50,34 @@ public class KalerKantho implements WebCrawler {
         article.setRawDetails(rawDetails);
         article.setMediaUrl(medialUrl);
         article.setUrl(url);
-
         return article;
     }
 
+    private boolean check(String url) {
+        int cnt = 0;
+        for(int i = 0; i < url.length(); i++) {
+            if(url.charAt(i) == '/') cnt++;
+        }
+        return cnt == 5;
+    }
+
+    private String mediaUrlParser(String url) {
+        return "";
+    }
+
     @Override
-    public List<String> getSublinks(String homeUrl) throws IOException {
-        Document document = Jsoup.connect(homeUrl).get();
+    public List<String> getSublinks(String url) throws IOException {
+        Document document = Jsoup.connect(url).get();
         Elements elements = document.select("a[href]");
-        ArrayList<String> urls = new ArrayList<String>();
+        var newsArticleUrl = new HashSet<>();
         for(var element : elements) {
-            String url = element.absUrl("href");
-            if(UrlValidator.isValid(url, urlPattern)) {
-                urls.add(url);
+            String absUrl = element.absUrl("href");
+            if(check(absUrl)) {
+                newsArticleUrl.add(absUrl);
             }
         }
-        return urls;
+        var result = new ArrayList<>();
+        result.addAll(newsArticleUrl);
+        return (ArrayList)result;
     }
 }

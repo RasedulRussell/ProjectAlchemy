@@ -6,8 +6,8 @@ import com.projectalchemy.util.ParseToMediaUrl;
 import com.projectalchemy.webCrawler.WebCrawler;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -38,7 +38,7 @@ public class Bdnews24 implements WebCrawler {
         /// media link
 
         String mediaUrl = null;
-        Elements mediaElement = document.getElementsByClass("media").select("img");
+        org.jsoup.select.Elements mediaElement = document.getElementsByClass("media").select("img");
         if(mediaElement.size() > 0) {
             String mediaImage = mediaElement.get(0).toString();
             mediaUrl = ParseToMediaUrl.parseToMediaURL(mediaImage);
@@ -48,7 +48,7 @@ public class Bdnews24 implements WebCrawler {
         title = titleFilter(title);
         String cateory = CategoryCheck.categoryCheck(url);
 
-        Elements elements = document.select("p");
+        org.jsoup.select.Elements elements = document.select("p");
 
         for(int i = 0; i < 4; i++) {
             elements.remove(0);
@@ -75,10 +75,10 @@ public class Bdnews24 implements WebCrawler {
     @Override
     public List<String> getSublinks(String newspaperHomeUrl) throws IOException {
         Document document = Jsoup.connect(newspaperHomeUrl).get();
-        Elements links = document.select("a[href]");
+        Elements links =  document.select("a[href]");
         ArrayList<String> urls = new ArrayList<String>();
 
-        for(var link : links) {
+        for(Element link : links) {
             String url = link.absUrl("href");
             if(url.contains("article")) {
                 urls.add(url);
