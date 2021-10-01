@@ -21,9 +21,28 @@ public class Main {
         String kalerkantho = "https://www.kalerkantho.com";
         String ittefaq = "https://www.ittefaq.com.bd/";
         String nayadiganta = "https://www.dailynayadiganta.com/";
+        String jugantor = "https://www.jugantor.com/";
+        String inqilab = "https://www.dailyinqilab.com/";
 
         NewsperCrawler newsperCrawler =
+                new NewsperCrawler(bdnews24, new OracleDatabase(connection), new Bdnews24());
+        newsperCrawler.Crawl();
+        System.out.println("new");
+        newsperCrawler =
+                new NewsperCrawler(jugantor, new OracleDatabase(connection), new Jugantor());
+        newsperCrawler.Crawl();
+        System.out.println("new");
+        newsperCrawler =
                 new NewsperCrawler(nayadiganta, new OracleDatabase(connection), new Nayadiganta());
         newsperCrawler.Crawl();
+        System.out.println("new");
+        newsperCrawler =
+                new NewsperCrawler(ittefaq, new OracleDatabase(connection), new Ittefaq());
+        newsperCrawler.Crawl();
+        System.out.println("new");
+        newsperCrawler =
+                new NewsperCrawler(kalerkantho, new OracleDatabase(connection), new KalerKantho());
+        newsperCrawler.Crawl();
+        System.out.println("new");
     }
 }

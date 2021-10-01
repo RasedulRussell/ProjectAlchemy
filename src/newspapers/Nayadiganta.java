@@ -73,7 +73,6 @@ public class Nayadiganta implements WebCrawler {
 
         var result = new ArrayList<>();
         result.addAll(list);
-        System.out.println(result.size());
         return (ArrayList)result;
     }
 }
